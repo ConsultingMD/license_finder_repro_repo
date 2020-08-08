@@ -1,0 +1,42 @@
+run:
+  deadline: 2m
+
+  skip-dirs:
+    - bin
+    - config
+    - hack
+    - docs
+    - script
+    - testdata
+
+linters-settings:
+  govet:
+    check-shadowing: true
+    settings:
+      printf:
+        funcs:
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+    golint:
+      min-confidence: 0.9
+
+    gocyclo:
+      min-complexity: 15
+
+linters:
+  enable:
+    - gocyclo
+    - gofmt
+    - goimports
+    - golint
+    - govet
+    - ineffassign
+    - misspell
+  disable:
+    - errcheck
+    - gas
+    - megacheck
+    - varcheck
+  fast: true
